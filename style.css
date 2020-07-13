@@ -186,3 +186,64 @@ body {
     color: white;
     background-color: #E95D0F;
 }
+
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+	box-sizing: border-box;
+}
+
+
+#score-board{
+	padding-top : 20px;
+	width: 280px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  background: #fff;
+	display:block
+}
+
+#score-board h3{
+	color: #fff;
+	font-size:16px;
+	font-weight:bold;
+	background:#4d7f9f;
+	padding:8px 15px;
+	text-shadow: 1px 1px 1px #333333;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+		max-width: 100%;
+		background-color: transparent;
+		display table;
+		border-color : grey;
+		border-spacing: 0;
+		border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+#result-table td#wpm{
+	text-align: center;
+}
+
+#result-table td#wpm strong{
+	font-size :46px;
+	color : #527a1e;
+	 margin-bottom : -9px;
+	margin-top:3px;
+	display: block;
+}
+
+
+#result-table td#wpm small{
+	color:#81888c;
+	font-size :12px;
+}
