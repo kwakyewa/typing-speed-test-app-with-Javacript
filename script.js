@@ -3,13 +3,18 @@ const testArea = document.querySelector("#test-area");
 const originText = document.querySelector("#origin-text p").innerHTML;
 const resetButton = document.querySelector("#reset");
 const theTimer = document.querySelector(".timer");
-var WORDSPERMINUTE = document.querySelector("#result-table td#wpm strong");
 
-//creating a global variable called timer set it an array of minutes, seconds , hundreth of seconds and thousandths of seconds
+var wordsPerMinute = document.querySelector("#result-table td#wpm strong");
+
+var numberofErrors = document.querySelector("#wrong strong");
+var errorCount = 0;
+
+//creating a global variable called timer set it an array of minutes, seconds , hundredth of seconds and thousandths of seconds
 var timer = [0,0,0,0];
 var interval ;
 var timerRunning = false;
 var currentTime;
+
 
 // Add leading zero to numbers 9 or below (purely for aesthetics):
 function leadingZero(time){
@@ -45,7 +50,7 @@ function runTimer(){
     let hundrethofASecondOfCurrentTimeToMinutes = (timer[2])/6000;
     let totalCurrentTimeInMinutes = minutesOfCurrentTime +  secondsOfCurrentTimeToMinutes + hundrethofASecondOfCurrentTimeToMinutes;
 
-    WORDSPERMINUTE.innerHTML = Math.ceil(countWords(textEntered)/totalCurrentTimeInMinutes.toFixed(4)) + " WPM";
+    wordsPerMinute.innerHTML = Math.ceil(countWords(textEntered)/totalCurrentTimeInMinutes.toFixed(4)) + " WPM";
     clearInterval(interval); //stop the timer.
     testWrapper.style.borderColor ="#429890"; //set to green when the whole text typed matches the original text
   }else{
@@ -53,6 +58,8 @@ function runTimer(){
       testWrapper.style.borderColor ="#65CCf3"; //blue and typing correct letter but not done
     }else{
         testWrapper.style.borderColor ="#E95D0F";  //set to orange color when a wrong letter is typed
+        ++errorCount;
+        numberofErrors.innerHTML = errorCount;
       }
    }
 }
@@ -73,7 +80,7 @@ function start(){
 
   if(textEnteredLength === 0 && !timerRunning){
     timerRunning = true;
-  interval = setInterval(runTimer , 10); //run every 1000 of a second
+    interval = setInterval(runTimer , 10); //run every 1000 of a second
   }
   //console.log(textEnteredLength);
 }
@@ -95,8 +102,11 @@ theTimer.innerHTML = "00:00:00";
 //set the border color around the textara back to grey
 testWrapper.style.borderColor = "grey";
 
-//clear the WORDSPERMINUTE to display "0 WPM"
-WORDSPERMINUTE.innerHTML = "0 WPM";
+//clear the wordsPerMinute to display "0 WPM"
+wordsPerMinute.innerHTML = "0 WPM";
+
+//clear the numberofErrors to display 0
+numberofErrors.innerHTML = "0";
 }
 
 
