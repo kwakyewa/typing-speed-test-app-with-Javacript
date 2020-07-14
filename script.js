@@ -9,6 +9,7 @@ var wordsPerMinute = document.querySelector("#result-table td#wpm strong");
 var numberofErrors = document.querySelector("#wrong strong");
 var errorCount = 0;
 
+var typingAccuracy = document.querySelector("#accuracy strong");
 
 //creating a global variable called timer set it an array of minutes, seconds , hundredth of seconds and thousandths of seconds
 var timer = [0,0,0,0];
@@ -56,6 +57,13 @@ function runTimer(){
 
     wordsPerMinute.innerHTML = Math.ceil(countWords(textEntered)/totalCurrentTimeInMinutes.toFixed(4)) + " WPM";
 
+    //Accuracy : (Net WPM/ Gross WPM ) * 100
+    // Gross WPM : Total Words Typed / Total Time Taken (in minutes)
+    // Net Speed : (Total Words Typed - Word Error ) / Total Time Taken (in minutes)
+    let grossWPM = countWords(textEntered)/totalCurrentTimeInMinutes.toFixed(4);
+    let netSpeed =  (countWords(textEntered) - errorCount)/totalCurrentTimeInMinutes.toFixed(4);
+    let percentageAccuray = ((netSpeed / grossWPM) * 100).toFixed(2);
+    typingAccuracy.innerHTML = percentageAccuray + "%";
     testWrapper.style.borderColor ="#429890"; //set to green when the whole text typed matches the original text
 
   }else{
@@ -114,6 +122,9 @@ wordsPerMinute.innerHTML = "0 WPM";
 //clear the numberofErrors to display 0
 errorCount = 0;
 numberofErrors.innerHTML = "0";
+
+//clear the typing accuracy value after the resetButton
+typingAccuracy.innerHTML ="0%";
 }
 
 
